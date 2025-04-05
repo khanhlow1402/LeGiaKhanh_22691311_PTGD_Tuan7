@@ -5,10 +5,15 @@ import bell from "./assets/bell.png";
 import ques from "./assets/question.png";
 import search from "./assets/search.png";
 import CardOverview from "./components/CardOverView.jsx";
+import DataTable from "./components/DataTable.jsx";
 import squareFour from "./assets/Squares four 1.png"; // Đường dẫn đến hình ảnh
 import button1599 from "./assets/Button 1509.png";
 import button1530 from "./assets/Button 1529.png";
 import button1529 from "./assets/Button 1530.png";
+import text from "./assets/File text 1.png";
+import up from "./assets/Move up.png";
+import down from "./assets/Download.png";
+
 function App() {
   // Fetch OverView API
   const [loading, setLoading] = useState(true);
@@ -100,7 +105,26 @@ function App() {
           />
         </div>
       </div>
-      <div className="right3">RIGHT3</div>
+      <div className="right3">
+        <div className="right3-head">
+          <div className="ovr_gr2">
+            <img src={text} />
+            <span>Detailed report</span>
+          </div>
+          <div className="import-export-container">
+            <div className="section">
+              <img src={up} />
+              <span>Import</span>
+            </div>
+            <div className="section">
+              <img src={down} />
+              <span>Export</span>
+            </div>
+          </div>
+        </div>
+
+        <DataTable />
+      </div>
     </div>
   );
 }

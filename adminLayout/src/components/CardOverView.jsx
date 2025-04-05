@@ -13,10 +13,13 @@ const CardOverview = ({ title, value, per, color, imageLogo }) => {
           <p className="card-value">{value}</p>
           <p
             className="card-percentage"
-            style={{ color: per >= 0 ? "#28a745" : "#dc3545" }}
+            // style={{ color: per >= 0 ? "#28a745" : "#dc3545" }}
           >
-            {per >= 0 ? "+" : ""}
-            {per}% period of change
+            <span style={{ color: per >= 0 ? "#28a745" : "#dc3545" }}>
+              {per >= 0 ? "+" : ""}
+              {per}%
+            </span>
+            <span style={{ color: "#565E6CFF" }}> period of change</span>
           </p>
         </div>
       </div>

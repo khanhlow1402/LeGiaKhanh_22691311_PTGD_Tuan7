@@ -29,7 +29,6 @@
   justify-content: space-between;
   border-bottom: 1px solid #eee;
   padding: 10px 30px;
-  border-bottom: 1px solid #eee;
 }
 .right1 h2{
   color: #f44b87;
@@ -123,8 +122,48 @@
 }
 /* Right2 */
 
+
+/* Right3 */
+
 .right3{
   grid-area: r3;
-  background-color: fuchsia;
   min-height: 300px;
+  padding: 20px;
 }
+.ovr_gr2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ovr_gr2 img {
+  margin-right: 10px;
+}
+
+.ovr_gr2 span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.right3-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.import-export-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.section {
+  display: flex;
+  border-radius: 5px;
+  padding: 10px;
+  align-items: center;
+  border: 1px solid #f44b87;
+  color: #f44b87;
+  gap: 10px;
+}
+
+/* Right3 */
