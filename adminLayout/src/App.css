@@ -29,11 +29,12 @@
   justify-content: space-between;
   border-bottom: 1px solid #eee;
   padding: 10px 30px;
+  border-bottom: 1px solid #eee;
 }
 .right1 h2{
   color: #f44b87;
   padding-right: 500px;
-  font-weight: 800
+  font-weight: 800;
 }
 .search-box{
   display: flex;
@@ -62,11 +63,65 @@
 }
 /* Right1 */
 
+/* Right2 */
 .right2{
   grid-area: r2;
-  background-color: green;
   min-height: 200px;
+  padding: 20px;
 }
+
+
+.ovr_gr {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ovr_gr img {
+  margin-right: 10px;
+}
+
+.ovr_gr span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ovr_card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.card-header img {
+  margin-right: 10px;
+}
+
+.card-header h3 {
+  margin: 0;
+}
+
+.card-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card-percentage {
+  margin: 0;
+}
+/* Right2 */
 
 .right3{
   grid-area: r3;
