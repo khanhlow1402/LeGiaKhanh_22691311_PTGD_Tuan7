@@ -2,6 +2,7 @@ import './App.css'
 import avt from './assets/avt.png'
 import bell from './assets/bell.png'
 import ques from './assets/question.png'
+import search from './assets/search.png'
 
 function App() {
 
@@ -13,9 +14,10 @@ function App() {
       <div className='right1'> 
             <h2>Dashboard</h2>
             <div className="search-box">
+            <img src= {search} />
               <input type="text" className="search-input" placeholder="Search..." />
             </div>
-            <div className='vip'>
+            <div className='headUser'>
             <img src= {bell}  />
             <img src= {ques}  />
 

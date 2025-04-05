@@ -23,16 +23,17 @@
 /* Right1 */
 .right1{
   grid-area: r1;
-  min-height: 100px;
+  min-height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   border-bottom: 1px solid #eee;
   padding: 10px 30px;
 }
 .right1 h2{
   color: #f44b87;
-
+  padding-right: 500px;
+  font-weight: 800
 }
 .search-box{
   display: flex;
@@ -43,37 +44,21 @@
   margin-top: 5px;
   border-radius: 10px;
   padding: 0 10px;
-  
+  gap: 10px;
 }
 .search-input {
   border: none;
   color: #333;
   background: transparent;
   font-size: 16px;
-
-}
-
-.menu {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  margin-top: 15px;
-}
-
-.menu li {
-  margin: 0 15px;
-}
-
-.menu li a {
-  text-decoration: none;
-  color: #7a818c;
+  padding-right: 100px;
   
 }
 
-.user img{
-  width: 15%;
-  border-radius: 50px;
-  margin-left: 20px;
+.headUser{
+  display: flex;
+  align-items: center;
+  gap: 15px
 }
 /* Right1 */
 
