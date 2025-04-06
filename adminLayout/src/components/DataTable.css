@@ -123,3 +123,64 @@ padding-left: 15px;  }
   text-align: center;
   width: 40px;
 }
+
+.image-button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+.image-button:hover .button-image {
+  transform: scale(1.05);
+}
+
+/* Thêm các style mới vào file CSS hiện có */
+
+/* Style cho chế độ chỉnh sửa */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 90%;
+  font-size: 14px;
+}
+
+/* Nút Save và Cancel */
+button {
+  padding: 6px 12px;
+  border: none;
+  margin: 0 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save{
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel{
+  background-color: #f44336;
+  color: white;
+}
+/* Disable checkbox khi đang chỉnh sửa */
+input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Style cho input date */
+input[type="date"] {
+  padding: 7px;
+}
+
+/* Đảm bảo các cột có chiều rộng phù hợp */
+.data-table td {
+  vertical-align: middle;
+}

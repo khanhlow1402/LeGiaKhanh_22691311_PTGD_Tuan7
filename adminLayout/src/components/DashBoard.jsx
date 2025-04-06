@@ -19,6 +19,7 @@ export default function DashBoard() {
   const [totalOrderValue, setTotalOrderValue] = useState(0);
   const [totalProfit, setTotalProfit] = useState(0);
   const [totalCustomer, setTotalCustomer] = useState(0);
+  const [refreshCount, setRefreshCount] = useState(0);
 
   useEffect(() => {
     fetch("https://67f095ff2a80b06b88982583.mockapi.io/data")
@@ -42,7 +43,11 @@ export default function DashBoard() {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }, []);
+  }, [refreshCount]);
+
+  const handleDataUpdated = () => {
+    setRefreshCount((prev) => prev + 1);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -120,7 +125,7 @@ export default function DashBoard() {
           </div>
         </div>
 
-        <DataTable />
+        <DataTable onDataUpdated={handleDataUpdated} />
       </div>
     </>
   );
