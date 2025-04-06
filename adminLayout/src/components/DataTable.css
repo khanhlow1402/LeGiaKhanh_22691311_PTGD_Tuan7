@@ -133,7 +133,7 @@ padding-left: 15px;  }
 
 
 .image-button:hover .button-image {
-  transform: scale(1.05);
+  transform: scale(1.2);
 }
 
 /* Thêm các style mới vào file CSS hiện có */

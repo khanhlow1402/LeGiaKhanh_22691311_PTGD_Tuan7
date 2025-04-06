@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./DataTable.css";
 import edit from "../assets/create.png";
 
-const DataTable = ({ onDataUpdated }) => {
+const DataTable = ({ refreshTrigger, onDataChange }) => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -11,7 +11,6 @@ const DataTable = ({ onDataUpdated }) => {
   const [selectAll, setSelectAll] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
-  const [refreshKey, setRefreshKey] = useState(0);
   const itemsPerPage = 6;
 
   const fetchData = async () => {
@@ -32,7 +31,7 @@ const DataTable = ({ onDataUpdated }) => {
 
   useEffect(() => {
     fetchData();
-  }, [refreshKey]);
+  }, [refreshTrigger]);
   // Get current items
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -81,19 +80,10 @@ const DataTable = ({ onDataUpdated }) => {
       );
 
       if (response.ok) {
-        // Gọi callback khi cập nhật thành công
-        if (onDataUpdated) onDataUpdated();
-        // Cập nhật UI ngay lập tức
-        const updatedData = data.map((item) =>
-          item.id === id ? { ...editForm } : item
-        );
-        setData(updatedData);
+        // Gọi callback thông báo thay đổi dữ liệu
+        if (onDataChange) onDataChange();
+
         setEditingId(null);
-
-        // Load lại dữ liệu từ server
-        setRefreshKey((prev) => prev + 1);
-
-        // Có thể thêm thông báo thành công ở đây
         alert("Cập nhật thành công!");
       }
     } catch (error) {
@@ -270,7 +260,11 @@ const DataTable = ({ onDataUpdated }) => {
               ) : (
                 <>
                   <td className="user">
-                    <img src={item.avatar} alt="" className="img-user" />{" "}
+                    <img
+                      src={item.avatar || "https://i.pravatar.cc/150?img=3"}
+                      alt=""
+                      className="img-user"
+                    />{" "}
                     {item.name || "N/A"}
                   </td>
                   <td>{item.companyName || "N/A"}</td>

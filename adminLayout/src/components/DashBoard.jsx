@@ -5,23 +5,28 @@ import ques from "../assets/question.png";
 import search from "../assets/search.png";
 import CardOverview from "./CardOverView.jsx";
 import DataTable from "./DataTable.jsx";
-import squareFour from "../assets/Squares four 1.png"; // Đường dẫn đến hình ảnh
+import squareFour from "../assets/Squares four 1.png";
 import button1599 from "../assets/Button 1509.png";
 import button1530 from "../assets/Button 1529.png";
 import button1529 from "../assets/Button 1530.png";
 import text from "../assets/File text 1.png";
 import up from "../assets/Move up.png";
 import down from "../assets/Download.png";
-
+import add from "../assets/add.png";
+import AddCustomerModal from "./AddCustomerModal.jsx";
 export default function DashBoard() {
-  // Fetch OverView API
   const [loading, setLoading] = useState(true);
   const [totalOrderValue, setTotalOrderValue] = useState(0);
   const [totalProfit, setTotalProfit] = useState(0);
   const [totalCustomer, setTotalCustomer] = useState(0);
   const [refreshCount, setRefreshCount] = useState(0);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
+    fetchData();
+  }, [refreshCount]);
+
+  const fetchData = () => {
     fetch("https://67f095ff2a80b06b88982583.mockapi.io/data")
       .then((res) => res.json())
       .then((data) => {
@@ -43,17 +48,53 @@ export default function DashBoard() {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }, [refreshCount]);
+  };
 
-  const handleDataUpdated = () => {
-    setRefreshCount((prev) => prev + 1);
+  // const handleDataUpdated = () => {
+  //   setRefreshCount((prev) => prev + 1);
+  // };
+
+  const handleAddClick = () => {
+    setShowAddModal(true);
+  };
+
+  const handleAddCustomer = async (newCustomer) => {
+    try {
+      const response = await fetch(
+        "https://67f095ff2a80b06b88982583.mockapi.io/data",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: newCustomer["CUSTOMER NAME"],
+            companyName: newCustomer["COMPANY"],
+            orderValue: newCustomer["ORDER VALUE"],
+            orderDate: newCustomer["ORDER DATE"],
+            status: newCustomer["STATUS"],
+            avatar:
+              "https://i.pinimg.com/736x/25/8b/d3/258bd35c4067d20b745c577f5d79564b.jpg",
+            profit: "0",
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to add customer");
+
+      setRefreshCount((prev) => prev + 1); // Trigger reload
+      setShowAddModal(false);
+      alert("Thêm khách hàng thành công!");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Lỗi khi thêm khách hàng!");
+    }
   };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Fetch OverView API
   return (
     <>
       <div className="right1">
@@ -65,7 +106,6 @@ export default function DashBoard() {
         <div className="headUser">
           <img src={bell} />
           <img src={ques} />
-
           <img src={avt} alt="User" className="avatar" />
         </div>
       </div>
@@ -114,6 +154,10 @@ export default function DashBoard() {
             <span>Detailed report</span>
           </div>
           <div className="import-export-container">
+            <div className="section" onClick={handleAddClick}>
+              <img src={add} />
+              <span>Add</span>
+            </div>
             <div className="section">
               <img src={up} />
               <span>Import</span>
@@ -125,7 +169,16 @@ export default function DashBoard() {
           </div>
         </div>
 
-        <DataTable onDataUpdated={handleDataUpdated} />
+        <DataTable
+          refreshTrigger={refreshCount} // Thay vì onDataUpdated
+          onDataChange={() => setRefreshCount((prev) => prev + 1)}
+        />
+        {showAddModal && (
+          <AddCustomerModal
+            onClose={() => setShowAddModal(false)}
+            onAdd={handleAddCustomer}
+          />
+        )}
       </div>
     </>
   );

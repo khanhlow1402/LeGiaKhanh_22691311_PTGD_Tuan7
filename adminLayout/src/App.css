@@ -166,6 +166,9 @@
   border: 1px solid #f44b87;
   color: #f44b87;
   gap: 10px;
+  cursor: pointer;
 }
-
+.section:hover {
+  background-color: #fed1ea;
+}
 /* Right3 */
