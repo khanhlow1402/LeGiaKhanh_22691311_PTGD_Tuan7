@@ -94,6 +94,47 @@ export default function DashBoard() {
   if (loading) {
     return <div>Loading...</div>;
   }
+  const handleExportCSV = () => {
+    fetch("https://67f095ff2a80b06b88982583.mockapi.io/data")
+      .then((res) => res.json())
+      .then((data) => {
+        const headers = [
+          "Customer Name",
+          "Company",
+          "Order Value",
+          "Order Date",
+          "Status",
+        ];
+
+        const csvContent = [
+          headers.join(","),
+          ...data.map((item) =>
+            [
+              `"${item.name || "N/A"}"`,
+              `"${item.companyName || "N/A"}"`,
+              `"$${item.orderValue || "0"}"`,
+              `"${
+                item.orderDate
+                  ? new Date(item.orderDate).toLocaleDateString()
+                  : "N/A"
+              }"`,
+              `"${item.status || "NEW"}"`,
+            ].join(",")
+          ),
+        ].join("\n");
+
+        const blob = new Blob([csvContent], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "customers_export.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+  };
 
   return (
     <>
@@ -159,11 +200,11 @@ export default function DashBoard() {
               <span>Add</span>
             </div>
             <div className="section">
-              <img src={up} />
+              <img src={down} />
               <span>Import</span>
             </div>
             <div className="section">
-              <img src={down} />
+              <img src={up} onClick={handleExportCSV} />
               <span>Export</span>
             </div>
           </div>
