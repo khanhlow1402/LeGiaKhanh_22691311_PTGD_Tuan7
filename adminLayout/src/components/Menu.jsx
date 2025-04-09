@@ -8,6 +8,7 @@ import team from "../assets/groups.png";
 import mess from "../assets/chat.png";
 import ana from "../assets/Pie chart.png";
 import code from "../assets/Code.png";
+import group from "../assets/Group.png";
 
 const Menu = () => {
   return (
@@ -87,6 +88,11 @@ const Menu = () => {
           </li>
         </ul>
       </nav>
+      <div className="groups">
+        <img src={group} alt="" className="group" />
+        <h3 className="txt">v2.0 is available</h3>
+        <span className="try">Try now</span>
+      </div>
     </div>
   );
 };

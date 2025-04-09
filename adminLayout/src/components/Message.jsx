@@ -19,7 +19,7 @@ export default function Message() {
           <img src={avt} alt="User" className="avatar" />
         </div>
       </div>
-      <h1 className="h1">Màn hình Messages</h1>;
+      <h1 className="h1">Màn hình Messages</h1>
     </>
   );
 }

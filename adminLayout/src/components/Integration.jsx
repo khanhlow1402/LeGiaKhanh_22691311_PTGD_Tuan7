@@ -19,7 +19,7 @@ export default function Integration() {
           <img src={avt} alt="User" className="avatar" />
         </div>
       </div>
-      <h1 className="h1">Màn hình Integrations</h1>;
+      <h1 className="h1">Màn hình Integrations</h1>
     </>
   );
 }
